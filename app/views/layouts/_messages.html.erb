@@ -1,4 +1,4 @@
-<% if enabled_announcement %>
+<% if !admin_pages? && enabled_announcement %>
    <%= render partial: 'layouts/message',
               locals: { 
                 msg: enabled_announcement.title,
