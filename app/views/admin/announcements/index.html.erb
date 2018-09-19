@@ -1,0 +1,30 @@
+<p>
+  <%= link_to 'Create new announcement', [:new, :admin, :announcement], class: 'btn btn-primary' %>
+</p>
+<br>
+
+<table class="table table-striped data-table">
+  <thead>
+    <tr>
+      <th>Creation date</th>
+      <th>Titlte</th>
+      <th>Url</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @announcements.each do |announcement| %>
+      <tr>
+        <td><%= announcement.created_at %></td>
+        <td><%= announcement.title %></td>
+        <td><%= announcement.url %></td>
+         <td><%= announcement.status %></td>
+        <td>
+          <%= link_to 'View', [:edit, :admin, announcement] %> |
+          <%= link_to 'Delete', [:admin, announcement], method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

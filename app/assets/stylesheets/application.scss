@@ -1,0 +1,15 @@
+/*
+ *= require_tree .
+ *= require_self
+ */
+
+.alert-announcement {
+  background-color: #f69833;
+  text-align: center;
+  color: #fff;
+  font-size: 2rem;
+  padding: 0.8rem;
+  a {
+    color: #fff;
+  }
+}

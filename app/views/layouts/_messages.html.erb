@@ -1,9 +1,17 @@
+<% if enabled_announcement %>
+   <%= render partial: 'layouts/message',
+              locals: { 
+                msg: enabled_announcement.title,
+                url: enabled_announcement.url,
+                klass: 'announcement',
+                name: 'announcement'
+              }
+   %>
+<% end %>
+
 <%# Rails flash messages styled for Bootstrap 3.0 %>
 <% flash.each do |name, msg| %>
   <% if msg.is_a?(String) %>
-    <div class="alert alert-dismissible alert-<%= name.to_s == 'notice' ? 'success' : 'danger' %>">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true"></button>
-      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-    </div>
+    <%= render partial: 'layouts/message', locals: { msg: msg, name: name.to_s } %>
   <% end %>
 <% end %>
