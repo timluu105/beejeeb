@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  devise :database_authenticatable, :rememberable,
+  devise :database_authenticatable, :rememberable, :recoverable,
          :omniauthable, omniauth_providers: %i[facebook]
 
   has_many :cart_items

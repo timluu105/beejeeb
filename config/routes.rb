@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   root to: 'statics#index'
   get 'index.html', to: redirect('/') # Fix links and remove this line
-  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', passwords: 'users/passwords' }
   get 'faq.html', to: 'statics#faq'
   get 'how-it-works.html', to: 'statics#how_it_works'
   get 'about-us.html', to: 'statics#about_us'

@@ -9,7 +9,20 @@
   color: #fff;
   font-size: 2rem;
   padding: 0.8rem;
+  margin-bottom: 0;
   a {
     color: #fff;
+  }
+}
+
+
+#error_explanation {
+  color: red;
+  font-size: 1.5rem;
+  h2 {
+    font-size: 2rem;
+  }
+  ul {
+    margin: 2rem 0;
   }
 }

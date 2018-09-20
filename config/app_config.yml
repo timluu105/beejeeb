@@ -1,0 +1,18 @@
+# encoding: utf-8
+default: &settings
+  host: loc.my
+  port: 80
+  protocol: http://
+  from_email: 'info@beejeeb-stage.herokuapp.com'
+
+test:
+  <<: *settings
+
+development:
+  <<: *settings
+  port: 4500
+
+production:
+  <<: *settings
+  host: beejeeb-stage.herokuapp.com
+  protocol: 'https://'

@@ -1134,12 +1134,16 @@ a:hover, a:focus{
 .login_area_headding{
 	text-align: center;
 }
-.login_area_headding h2 {
-    font-family: Souses, sans-serif;
-    font-size: 32px;
-    color: #f89920;
-    letter-spacing: 3px;
-	padding-bottom: 45px;
+.login_area_headding h2, .password_form_area h2 {
+  font-family: Souses, sans-serif;
+  font-size: 32px;
+  color: #f89920;
+  letter-spacing: 3px;
+  padding-bottom: 45px;
+}
+.password_form_area h2 {
+  padding-bottom: 25px;
+  text-align: center;
 }
 .facebook_button{
 	text-align: center;
@@ -1147,16 +1151,19 @@ a:hover, a:focus{
 .login_form_area{
 	padding-top: 40px;
 }
-.login_form_area p{
+.password_form_area {
+  padding-top: 10px;
+}
+.login_form_area p, .password_form_area p {
 	text-align: center;
 	font-size: 14px;
 	color: #b9bcbe;
 }
 .login_form_btn{
-	padding-top: 70px;
+	padding-top: 39px;
 	text-align: center;
 }
-.login_form_btn button {
+.login_form_btn button, .password_form_area button {
     width: 100%;
     max-width: 200px;
     height: 52px;
@@ -1169,6 +1176,13 @@ a:hover, a:focus{
     border: 1px solid #f89920;
     border-radius: 5px;
 }
+
+.password_form_area button {
+  max-width: 60%;
+  margin: 30px auto;
+  display: block;
+}
+
 .signup_item{
 	background: #fff;
 	-webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);

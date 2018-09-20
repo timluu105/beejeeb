@@ -1,10 +1,17 @@
-%h2 Forgot your password?
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .actions
-    = f.submit "Send me reset password instructions"
-= render "users/shared/links"
+- content_for :css do
+  %link{:href => "/css/form.css", :rel => "stylesheet"}/
+
+%section.signup_login_area
+  .signup_login_area_main
+    .container-fluid
+      .row
+        .col
+          .looin_item
+            .password_form_area
+              %h2 Reset Password
+              = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+                .input.input_bejeeb
+                  = f.email_field :email, id: 'input-1', class: 'input__field input__field_bejeeb'
+                  %label.input__label.input__label_bejeeb{:for => "input-1"}
+                    %span.input__label-content.input__label-content_bejeeb Email
+                %button{type: "submit"} Send me reset password instructions
