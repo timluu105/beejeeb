@@ -1,0 +1,70 @@
+%table{:bgcolor => "F4FAFF", :border => "0", :cellpadding => "0", :cellspacing => "0", :width => "100%"}
+  %tr
+    %td.min_width{:align => "center", :style => "min-width:770px; padding:0 10px"}
+      %table.container770{:align => "center", :bgcolor => "#F3FAFF", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt", :width => "770"}
+        %tr
+          %td{:align => "center", :style => "padding:0 15px 0 15px"}
+            %table.container770{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt", :width => "600"}
+              %tr
+                %td{:align => "center", :style => "padding:40px 0 0 0"}
+                  = link_to root_url do
+                    = image_tag 'logo2.png', alt: "Logo", border: "0", height: "67", style: "display:block", width:  "218"
+              %tr
+                %td{:align => "center", :style => "font-family:'Lato', Arial, Tahoma; Font-size:22px; line-height:29px; font-weight:800; font-style:normal; color:#009AFE; padding:56px 0 36px 0"}
+                  Dear #{@order.user.name},
+  %tr
+    %td.min_width{:align => "center", :style => "min-width:770px; padding:0 10px"}
+      %table.container770{:align => "center", :bgcolor => "#FFFFFF", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt", :width => "770"}
+        %tr
+          %td{:align => "center", :style => "padding:0 15px 0 15px"}
+            %table.container770{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt", :width => "330"}
+              %tr
+                %td{:align => "center", :style => "font-family:'Lato', Arial, Tahoma; Font-size:18px; line-height:28px; font-weight:bold; font-style:normal; color:#12425E; padding:40px 0 40px 0"}
+                  Here is exactly how much your Lynks order is going to cost you.
+        - @order.order_items.each do |order_item|
+          %tr
+            %td{:align => "center", :style => "padding:0 15px 0 15px"}
+              %table.container770{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt", :width => "514"}
+                %tr
+                  %td{:align => "center", :style => "padding:20px 0 0 0; border-top:2px solid #B8BDC2"}
+                    %table.container770{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt", :width => "514"}
+                      %tr
+                        %td.container100{:align => "left", :valign => "top", :width => "134"}
+                          %table.container770{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt", :width => "100%"}
+                            %tr
+                              %td{:align => "center", :style => "padding:20px 0 0 0"}
+                                = link_to order_item.supplier_url do
+                                  = image_tag order_item.image_url, style: "display:block", width: "134"
+                        %td.container100{:align => "left", :valign => "top", :width => "65"}
+                        %td.container100{:align => "left", :valign => "top", :width => "315"}
+                          %table.container770{:align => "left", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt", :width => "330"}
+                            %tr
+                              %td.center{:align => "left", :style => "font-family:'Lato', Arial, Tahoma; Font-size:18px; line-height:28px; font-weight:bold; font-style:normal; color:#12425E; padding:16px 0 0 0"}
+                                #{order_item.title}
+                            %tr
+                              %td.center{:align => "left", :style => "font-family:'Lato', Arial, Tahoma; Font-size:18px; line-height:30px; font-weight:normal; font-style:normal; color:#4C768F; padding:10px 0 0 0"}
+                                Item Price: #{number_to_currency(order_item.unit_cost)}
+                                %br/
+                                Quantity: #{order_item.quantity}
+                                %br/
+                                Weight: #{order_item.item_weight}
+                                %br/
+                                International Shipping: #{number_to_currency(order_item.international_shipping)}
+                                %br/
+                                US shipping and Taxes: #{number_to_currency(order_item.us_shipping_and_taxes)}
+                                %br/
+                                Local taxes and customs: #{number_to_currency(order_item.taxes_and_customs)}
+                                %br/
+                                Shipdady fees: #{number_to_currency(order_item.lynks_fees)}
+                                
+                            %tr
+                              %td{:align => "left", :style => "padding:28px 0 40px 0"}
+                                %table.container770{:align => "left", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt"}
+                                  %tr
+                                    %td{:align => "center", :style => "padding:0 0 0 0"}
+                                      %table.container770{:align => "center", :bgcolor => "#F89920", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; border-radius:4px; max-width:284px", :width => "284"}
+                                        %tr
+                                          %td{:align => "center", :style => "font-family:'Lato', Arial, Tahoma; Font-size:18px; line-height:20px; font-weight:bold; font-style:normal; color:#FFFFFF; padding:16px 15px 16px 15px"}
+                                            = link_to 'COMPLETE CHECKOUT', order_url(@order), style: "display:block; text-decoration:none; color:#FFFFFF"
+  %tr
+    %td{:height => "90"}

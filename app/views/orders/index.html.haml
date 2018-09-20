@@ -25,14 +25,10 @@
               - if order.total_price
                 = number_to_currency_with_conversion(order.total_price)
             - status_classes = { delivered: 'order_st_compleate', cancelled: 'order_st_cancelled', pending: 'order_st_process' }
-            %td
-            = status_classes.fetch(order.status){ 'default' }
-            "&gt;
-            %i
-              %img{:src => ""}/
-              = order_status_image_path(order.status)
-              " width="20px"/&gt;
-            = order.status.capitalize
-          %td.order_details
-            = button_to order, method: :get do
-              Check Details
+            %td{class: status_classes.fetch(order.status, 'default') }
+              %i
+                = image_tag order_status_image_path(order.status), width: "20px"
+              = order.status.capitalize
+            %td.order_details
+              = button_to order, method: :get do
+                Check Details

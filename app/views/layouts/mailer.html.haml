@@ -1,8 +1,138 @@
 !!!
-%html
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
   %head
-    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
+    / Define Charset
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %link{:href => "https://fonts.googleapis.com/css?family=Lato:300i,400,400i,700,700i,900", :rel => "stylesheet"}/
+    / Responsive Meta Tag
+    %meta{:content => "width=device-width; initial-scale=1.0; maximum-scale=1.0;", :name => "viewport"}/
+    %title
     :css
-      /* Email styles need to be inline */
-  %body
+      body{
+                  width: 100%; 
+                  background-color: #F4FAFF; 
+                  margin:0; 
+                  padding:0; 
+                  -webkit-font-smoothing: antialiased;
+      			-webkit-text-size-adjust:none;
+      			-ms-text-size-adjust: 100%;
+      			-webkit-text-size-adjust: 100%;
+                  mso-margin-top-alt:0px; mso-margin-bottom-alt:0px; mso-padding-alt: 0px 0px 0px 0px;
+              }
+              
+              p,h1,h2,h3,h4{
+      	        margin-top:0;
+      			margin-bottom:0;
+      			padding-top:0;
+      			padding-bottom:0;
+              }
+              
+              
+              html{
+                  width: 100%; 
+              }
+      		
+      		a:link, span.MsoHyperlink {
+      			mso-style-priority:99;
+      			color:blue;
+      			text-decoration:underline;
+      		}
+      		
+              /* iOS BLUE LINKS */
+      		a[x-apple-data-detectors] {
+      			color: inherit !important;
+      			text-decoration: none !important;
+      			font-size: inherit !important;
+      			font-family: inherit !important;
+      			font-weight: inherit !important;
+      			line-height: inherit !important;
+      		}
+      		.fix {
+      		 display:none;
+      		 display:none!important;
+      		}
+      		
+              /* ----------- responsivity ----------- */
+      		
+              @media only screen and (max-width: 640px){
+      			
+      			/*----- main image -------*/
+      			*[class=image770] img{width: 100% !important; height: auto !important;}
+      			*[class=center] {text-align:center !important;}
+      			
+      			/*-------- Container --------*/			
+      			*[class=min_width] {min-width: 100% !important}
+      			*[class=container770] {width: 100% !important}
+      			*[class=container100] {width: 100% !important; display:block !important}
+      			
+      		}
+    /[if (gte mso 9)|(IE)]
+      <style type="text/css">
+      table {border-collapse: collapse !important;}
+      td{font-family: arial !important}
+      </style>
+  %body{:leftmargin => "0", :marginheight => "0", :marginwidth => "0", :topmargin => "0"}
     = yield
+
+    %table{:bgcolor => "004362", :border => "0", :cellpadding => "0", :cellspacing => "0", :width => "100%"}
+      %tr
+        %td.min_width{:align => "center", :style => "min-width:770px; padding:0 10px"}
+          %table.container770{:align => "center", :bgcolor => "#004362", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt", :width => "770"}
+            %tr
+              %td{:align => "center", :style => "padding:0 0 20px 0"}
+                %table.container770{:align => "center", :bgcolor => "#004362", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt", :width => "770"}
+                  %tr
+                    %td.container100{:align => "left", :width => "26%"}
+                      %table.container770{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt", :width => "100%"}
+                        %tr
+                          %td.center{:align => "left", :style => "font-family:'Lato', Arial, Tahoma; Font-size:18px; line-height:24px; font-weight:bold; font-style:normal; color:#5DA1CE; padding:18px 0 0 0"}
+                            STAY CONNECTED:
+                    %td.container100{:align => "left", :width => "28%"}
+                      %table.container770{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt", :width => "100%"}
+                        %tr
+                          %td{:align => "center", :style => "padding:20px 0 0 0"}
+                            %table{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt"}
+                              %tr
+                                %td{:align => "right"}
+                                  = link_to APP_CONFIG['facebook_link'] do
+                                    = image_tag 'fb.png', alt: "Facebook", border: "0", height: "15", style: "display:block", width: "8"
+                                %td{:align => "left", :style => "font-family:'Lato', Arial, Tahoma; Font-size:15px; line-height:20px; font-weight:normal; font-style:normal; color:#5DA1CE; padding:0 0 0 10px"}
+                                  %a{:href => "", :style => "text-decoration:none; color:#5DA1CE"} On Facebook
+                    %td.container100{:align => "left", :width => "26%"}
+                      %table.container770{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt", :width => "100%"}
+                        %tr
+                          %td{:align => "center", :style => "padding:20px 0 0 0"}
+                            %table{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt"}
+                              %tr
+                                %td{:align => "right"}
+                                  = link_to APP_CONFIG['twitter_link'] do
+                                    = image_tag 'twitter.png', alt: "Twitter", border: "0", height: "13", style: "display:block", width: "15"
+                                %td{:align => "left", :style => "font-family:'Lato', Arial, Tahoma; Font-size:15px; line-height:20px; font-weight:normal; font-style:normal; color:#5DA1CE; padding:0 0 0 10px"}
+                                  %a{:href => "", :style => "text-decoration:none; color:#5DA1CE"} On Twitter
+                    %td.container100{:align => "right", :width => "20%"}
+                      %table.container770{:align => "right", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt", :width => "100%"}
+                        %tr
+                          %td{:align => "right", :style => "padding:20px 0 0 0"}
+                            %table.container770{:align => "right", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt"}
+                              %tr
+                                %td{:align => "center"}
+                                  %table{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt"}
+                                    %tr
+                                      %td{:align => "right"}
+                                        = link_to APP_CONFIG['instagram_link'] do
+                                          = image_tag 'insta.png', alt: "Instagram", border: "0", height: "15", style: "display:block", width: "15"
+
+                                      %td{:align => "left", :style => "font-family:'Lato', Arial, Tahoma; Font-size:15px; line-height:20px; font-weight:normal; font-style:normal; color:#5DA1CE; padding:0 0 0 10px"}
+                                        %a{:href => "", :style => "text-decoration:none; color:#5DA1CE"} On Instagram
+      %tr{:bgcolor => "F4FAFF"}
+        %td.min_width{:align => "center", :style => "min-width:770px"}
+          %table.container770{:align => "center", :bgcolor => "#F4FAFF", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt", :width => "770"}
+            %tr
+              %td.image770{:width => "50%"}
+                = image_tag 'fix_image.png', alt: "", border: "0", height: "1", style: "display:block", width: "350"
+              %td.image770{:width => "50%"}
+                = image_tag 'fix_image.png', alt: "", border: "0", height: "1", style: "display:block", width: "350"
+    .fix{:style => "display:none; white-space:nowrap; font:15px courier; line-height:0;"}
+      \                     
+      \                     
+      \               

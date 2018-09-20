@@ -1,6 +1,5 @@
-# frozen_string_literal: true
-
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  default from: APP_CONFIG['from_email']
+  append_view_path Rails.root.join('app', 'views', 'mailers')
   layout 'mailer'
 end

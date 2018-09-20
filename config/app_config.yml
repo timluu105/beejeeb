@@ -1,9 +1,14 @@
 # encoding: utf-8
 default: &settings
+  title: Shipdady
   host: loc.my
   port: 80
   protocol: http://
   from_email: 'info@beejeeb-stage.herokuapp.com'
+  sendgrid_enabled: false
+  instagram_link: http://instagram.com/
+  twitter_link: https://twitter.com/
+  facebook_link: https://www.facebook.com/
 
 test:
   <<: *settings
@@ -11,8 +16,10 @@ test:
 development:
   <<: *settings
   port: 4500
+  sendgrid_enabled: true
 
 production:
   <<: *settings
   host: beejeeb-stage.herokuapp.com
   protocol: 'https://'
+  sendgrid_enabled: true

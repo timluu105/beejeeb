@@ -13,6 +13,16 @@ class User < ApplicationRecord
   validates :password, presence: true, on: :create
   monetize :wallet_balance_cents
 
+  after_create_commit { UserMailer.welcome(self).deliver_now }
+
+  def admin!
+    update admin: true
+  end
+
+  def simple!
+    update admin: false
+  end
+
   def avatar_url
     '/images/avatar.jpg'
     # 'https://s.gravatar.com/avatar/d042f207f1d733e7c513acd188e80336?s=160'

@@ -10,4 +10,5 @@
               Your Order #{link_to "No. #{@order.number}", @order} is now confirmed!
               %br/
               A courier will reach you during the next 24 hours to collect the cash from your doorstep
-            %button{:type => "button"} back to main page
+            %br/
+            = link_to 'back to main page', root_path, class: 'btn btn-lg btn-warning'

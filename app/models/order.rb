@@ -3,10 +3,15 @@
 class Order < ApplicationRecord
   belongs_to :user
   has_many :order_items
+
   enum status: %i[reviewing reviewed confirmed received_usa_hub paid
                   out_for_delivery delivered on_hold returned cancelled]
+
   accepts_nested_attributes_for :order_items
+
   validate :valid_status_change
+
+  after_save :notify_user
 
   def total_price_with_discounts
     return total_price - coupon_discount if coupon_discount
@@ -123,6 +128,14 @@ class Order < ApplicationRecord
   end
 
   private
+
+  def notify_user
+    # send if reviewed
+    OrderMailer.reviewed(self).deliver_now if saved_changes['status'].present? && status == 'reviewed'
+
+    # send if just created
+    OrderMailer.created(self).deliver_now if saved_changes['id'] && saved_changes['id'].first.nil?
+  end
 
   def valid_status_change
     return true unless status == 'reviewed'

@@ -33,7 +33,9 @@ class OrdersController < AuthenticatedController
     (redirect_to(:orders, error: 'Order not ready for checkout') && return) unless @order.status == 'reviewed'
 
     coupon_params = params.require(:order).permit(:coupon_code_to_apply)
-    @order.apply_coupon(coupon_params[:coupon_code_to_apply]) if coupon_params
+    if coupon_params && coupon_params[:coupon_code_to_apply].present?
+      @order.apply_coupon(coupon_params[:coupon_code_to_apply])
+    end
 
     @order.assign_attributes(checkout_params)
     if @order.valid_for_checkout?

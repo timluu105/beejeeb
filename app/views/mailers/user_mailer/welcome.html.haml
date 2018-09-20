@@ -1,11 +1,3 @@
--# %p
--#   Hello #{@resource.email}!
--# %p Someone has requested a link to change your password. You can do this through the link below.
--# %p= link_to 'Change my password', edit_password_url(@resource, reset_password_token: @token)
--# %p If you didn't request this, please ignore this email.
--# %p Your password won't change until you access the link above and create a new one.
-
-
 %table{:bgcolor => "F4FAFF", :border => "0", :cellpadding => "0", :cellspacing => "0", :width => "100%"}
   %tr
     %td.min_width{:align => "center", :style => "min-width:770px; padding:0 10px"}
@@ -19,22 +11,24 @@
                     = image_tag 'logo2.png', alt: "Logo", border: "0", height: "67", style: "display:block", width:  "218"
               %tr
                 %td{:align => "center", :style => "font-family:'Lato', Arial, Tahoma; Font-size:22px; line-height:29px; font-weight:800; font-style:normal; color:#009AFE; padding:56px 0 36px 0"}
-                  Dear #{@resource.name},
+                  Dear #{@user.name},
   %tr
     %td.min_width{:align => "center", :style => "min-width:770px; padding:0 10px"}
       %table.container770{:align => "center", :bgcolor => "#FFFFFF", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt", :width => "770"}
         %tr
           %td{:align => "center", :style => "padding:0 15px 0 15px"}
-            %table.container770{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt", :width => "380"}
-              %tr
-                %td{:align => "center", :style => "padding:40px 0 0 0"}
-                  = image_tag 'key.png', alt: "", border: "0", height: "95", style: "display:block", width:  "95"
+            %table.container770{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt", :width => "410"}
               %tr
                 %td{:align => "center", :style => "font-family:'Lato', Arial, Tahoma; Font-size:18px; line-height:28px; font-weight:bold; font-style:normal; color:#12425E; padding:40px 0 0 0"}
-                  Someone recently requested a password change
-                  for your
-                  = link_to APP_CONFIG['host'], root_url, style: "text-decoration:none; color:#009AFE"
-                  account.
+                  Welcome to #{APP_CONFIG['title']} and get ready to shop from the international websites, and get your stuff delivered to your doorstep.
+              %tr
+                %td.image770{:align => "center", :style => "padding:30px 0 0 0"}
+                  = link_to root_url do
+                    = image_tag 'line3.png', alt: "Logo", border: "0", height: "2", style: "display:block; max-width:306px", width:  "306"
+
+              %tr
+                %td{:align => "center", :style => "font-family:'Lato', Arial, Tahoma; Font-size:18px; line-height:25px; font-weight:normal; font-style:normal; color:#4C768F; padding:30px 0 0 0"}
+                  Are you ready for the best online shopping experience ever?
         %tr
           %td{:align => "center", :style => "padding:0 15px 0 15px"}
             %table.container770{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt", :width => "410"}
@@ -46,6 +40,7 @@
                   %table.container770{:align => "center", :bgcolor => "#F89920", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; border-radius:4px; max-width:260px", :width => "260"}
                     %tr
                       %td{:align => "center", :style => "font-family:'Lato', Arial, Tahoma; Font-size:18px; line-height:20px; font-weight:bold; font-style:normal; color:#FFFFFF; padding:16px 15px 16px 15px"}
-                        = link_to 'Reset password', edit_password_url(@resource, reset_password_token: @token), style: "display:block; text-decoration:none; color:#FFFFFF"
+                        = link_to 'Start Buy', root_url, style: "display:block; text-decoration:none; color:#FFFFFF"
+
   %tr
     %td{:height => "90"}
