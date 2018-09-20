@@ -1,0 +1,58 @@
+#calculator_modal.modal.fade.calculator_modal{"aria-labelledby" => "calculator_modal", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-body
+        .home_modal1
+          .modal1_row
+            .modal1_coll_left
+              %img{:alt => "img", :src => "/images/img-21.png"}/
+            .modal1_coll_right
+              .modal1_table
+                %table{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0"}
+                  %tr
+                    %td.modal1_table_content
+                      Item price:
+                    %td#calculated_item_price.modal1_table_price
+                      $ 85.00
+                  %tr
+                    %td.modal1_table_content
+                      Quantity:
+                    %td#calculated_quantity.modal1_table_price
+                      2
+                  %tr
+                    %td.modal1_table_content
+                      US Shipping cost:
+                    %td#calculated_us_shipping_cost.modal1_table_price
+                      $ 25.00
+                  %tr
+                    %td.modal1_table_content
+                      International Shipping cost:
+                    %td#calculated_international_shipping.modal1_table_price
+                      $ 25.00
+                  %tr
+                    %td.modal1_table_content
+                      Weight:
+                    %td#calculated_item_weight.modal1_table_price
+                      0.45 kg
+                  %tr
+                    %td.modal1_table_content
+                      Customs  Taxes:
+                    %td#calculated_customs_and_taxes.modal1_table_price
+                      $ 15.00
+                  %tr
+                    %td.modal1_table_content
+                      Beejeeb fees:
+                    %td#calculated_fees.modal1_table_price
+                      $ 3.00
+                  %tr
+                    %td.modal1_table_devider{:colspan => "2"}
+                      %div
+                  %tr.modal1_table_footer
+                    %td.modal1_table_content
+                      Total Price:
+                    %td#calculated_total_price.modal1_table_price
+                      $950
+                      %span (JOD 35.00)
+          .home_modal1_close
+            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+              %span{"aria-hidden" => "true"}

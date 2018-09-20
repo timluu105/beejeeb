@@ -1,0 +1,13 @@
+= form_for [:admin, @coupon] do |f|
+  .form-group
+    = f.label :code
+    = f.text_field :code
+    %br/
+  .form-group
+    = f.label :fixed_amount
+    = f.number_field :fixed_amount, step: :any
+  .form-group
+    = f.label :discount_percentage
+    = f.number_field :discount_percentage, step: :any
+  .form-group
+    = f.submit 'Update', class: 'btn btn-primary'

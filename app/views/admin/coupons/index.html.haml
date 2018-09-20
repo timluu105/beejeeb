@@ -1,0 +1,32 @@
+%p
+  = link_to 'Create new coupon', [:new, :admin, :coupon], class: 'btn btn-primary'
+%br/
+%table.table.table-striped.data-table
+  %thead
+    %tr
+      %th Creation date
+      %th Code
+      %th Type
+      %th Fixed amount
+      %th Discount percentage
+      %th Actions
+  %tbody
+    - @coupons.each do |coupon|
+      %tr
+        %td= coupon.created_at
+        %td= coupon.code
+        %td= coupon.coupon_type
+        %td
+          - if coupon.fixed_amount
+            = number_to_currency coupon.fixed_amount
+          - else
+            \--
+        %td
+          - if coupon.discount_percentage
+            \% #{coupon.discount_percentage}
+          - else
+            \--
+        %td
+          = link_to 'View', [:edit, :admin, coupon]
+          |
+          \#{link_to 'Delete', [:admin, coupon], method: :delete}

@@ -1,0 +1,11 @@
+- if !admin_pages? && enabled_announcement
+  = render partial: 'layouts/message', |
+    locals: {                          |
+      msg: enabled_announcement.title, |
+      url: enabled_announcement.url,   |
+      klass: 'announcement',           |
+      name: 'announcement'             |
+    }                                  |
+- flash.each do |name, msg|
+  - if msg.is_a?(String)
+    = render partial: 'layouts/message', locals: { msg: msg, name: name.to_s }

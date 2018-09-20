@@ -1,0 +1,22 @@
+%p
+  = link_to 'Create new user', [:new, :admin, :user], class: 'btn btn-primary'
+%br/
+%table.table.table-striped.data-table
+  %thead
+    %tr
+      %th ID
+      %th Name
+      %th Email
+      %th Registration date
+      %th Wallet balance
+      %th Actions
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.id
+        %td= user.name
+        %td= user.email
+        %td= user.created_at.strftime('%Y/%m/%d at %I:%M%p')
+        %td= number_to_currency user.wallet_balance
+        %td
+          = link_to 'View', [:edit, :admin, user]

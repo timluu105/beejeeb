@@ -1,0 +1,42 @@
+#product_modal.modal.fade.product_modal{"aria-labelledby" => "product_modal", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-body
+        #modal_spinner
+          %center
+            %img{:src => "/images/loading.gif"}/
+        #modal_error{:style => "display:none"}
+          %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+          %h2{:style => "color: orange; text-align:center; height: 100px; line-height: 100px"}
+            We couldn't find the product, try again, please
+        #modal_results{:style => "display:none"}
+          = form_for @cart_item || CartItem.new do |cf|
+            .home_modal2
+              .modal2_row
+                .modal2_coll_left
+                  %img#modal_product_image{:alt => "img", :src => "images/img-22.png"}/
+                .modal2_coll_right
+                  .product_modal_content
+                    %h4#modal_product_title Aviator Classic
+                    = cf.hidden_field :title
+                    = cf.hidden_field :image_url
+                    = cf.hidden_field :supplier_url
+                    = cf.hidden_field :description
+                    %p#modal_product_description Product Description
+                    = cf.text_area :instructions, rows: 3, class: 'form-control', placeholder: 'Tell us about your item , size or color or any instructions regarding this item'
+                  .product_modal_footer
+                    .product_quantity
+                      %p Quantity
+                      .input-group
+                        %span.input-group-btn
+                          %button.p_quantity-left-minus.btn.btn-number{"data-field" => "", "data-type" => "minus", :type => "button"}
+                            %img{:alt => "img", :src => "images/icons/left_arrow_o.png"}/
+                        = cf.text_field :quantity, id: 'p_quantity', class: 'form-control input-number', min: 1, max: 100, value: cf.object.quantity || 1
+                        %span.input-group-btn
+                          %button.p_quantity-right-plus.btn.btn-number{"data-field" => "", "data-type" => "plus", :type => "button"}
+                            %img{:alt => "img", :src => "images/icons/right_arrow_o.png"}/
+                    %button.product_modal_add_btn{:type => "submit"} add to cart
+              .home_modal2_close
+                %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+                  %span{"aria-hidden" => "true"} ×

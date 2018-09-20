@@ -1,0 +1,15 @@
+%section.confirmation_area
+  .confirmation_area_main
+    .container-fluid
+      .row
+        .col-sm-12
+          .confirmation_item
+            %img{:alt => "img", :src => "/images/icons/like.png"}/
+            %h1 Thank You!
+            %p
+              Your Order #{link_to "NO. #{@order_number}", order_path(@order_id)} has been placed and will be reviewed shortly!
+              %br/
+              %br/
+              A quote with the total price will be sent to your email address.
+            %a{:href => "/"}
+              %button{:href => "/"} back to main page

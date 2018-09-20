@@ -1,0 +1,22 @@
+%p
+  = link_to 'Create new announcement', [:new, :admin, :announcement], class: 'btn btn-primary'
+%br/
+%table.table.table-striped.data-table
+  %thead
+    %tr
+      %th Creation date
+      %th Titlte
+      %th Url
+      %th Status
+      %th Actions
+  %tbody
+    - @announcements.each do |announcement|
+      %tr
+        %td= announcement.created_at
+        %td= announcement.title
+        %td= announcement.url
+        %td= announcement.status
+        %td
+          = link_to 'View', [:edit, :admin, announcement]
+          |
+          \#{link_to 'Delete', [:admin, announcement], method: :delete, data: { confirm: 'Are you sure?' }}

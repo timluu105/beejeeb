@@ -1,0 +1,176 @@
+/ Hero Area Start
+%section.hero_area
+  .hero_main
+    .container
+      .row
+        .col-sm-12
+          .hero_txt
+            %h1 Shop The World To Your Doorstep And Pay Cash In Jordan
+    #start_shopping.hero_form_area
+      .container
+        .row
+          .col-sm-12
+            .hero_form
+              .hero_form_txt
+                %p
+                  Send us the links of the products you want.
+                  %br/
+                  Beejeeb will buy on your behalf and ship them to your home.
+              %form
+                .hero_form_controll
+                  %input#url_to_fetch{:placeholder => "Paste item URL(e.g.https://www.amazon.com/gp/product/B072BQXQJ1)", :type => "text"}/
+                  %button{"data-product-fetcher" => "true", "data-target" => "#product_modal", "data-toggle" => "modal", :type => "button"} SHOP NOW
+/ featured_area2 Start
+%section#how-it-works.featured_area2
+  .featured_area2_main
+    .container-fluid
+      .page_headding
+        %h1 How it works
+        %p
+          It’s always easy to shop from your favorite websites
+          only withun three simple steps
+      .row
+        .col-sm-4
+          .featured2_item
+            %img{:alt => "img", :src => "images/img-1.png"}/
+            %h4.color_orange Select Product
+            %p
+              Copy paste the item you wants to buy, Wait 30 min for review. Checkout if you like the price,Otherwise just cancel the order.
+        .col-sm-4
+          .featured2_item
+            %img{:alt => "img", :src => "images/img-2.png"}/
+            %h4.featured2_blue PAY
+            %p
+              during the next 24 hours after you checkout. we will send a courier to collect the money for your order. or just pay using your credit card.
+        .col-sm-4
+          .featured2_item
+            %img{:alt => "img", :src => "images/img-3.png"}/
+            %h4.featured2_green Delivery
+            %p
+              Hooray! After reveiving your package to our US warehouse it will be delivered to you within 3-5 Business days.
+/ price calculator  Area Start
+%section#calculator.price_calculator_area
+  .container
+    .price_calculator_main
+      .price_calculator_headding
+        %h1 Price Calculator
+        %p You can get an estimated cost of your order before you place it.
+      .price_calculator_content
+        .row
+          .col-sm-3
+            .price_calculator_item
+              %p Item Price
+              .form-group
+                .input-group
+                  %input#price.form-control{:placeholder => "0", :type => "text"}/
+                  %label.input-group-addon{:for => "price"} $
+          .col-sm-3
+            .price_calculator_item
+              %p US Shipping Cost
+              .form-group
+                .input-group
+                  %input#cost.form-control{:placeholder => "0", :type => "text"}/
+                  %label.input-group-addon{:for => "cost"} $
+          .col-sm-3
+            .price_calculator_item
+              %p Weight
+              .form-group
+                .input-group
+                  %input#weight.form-control{:placeholder => "0", :type => "text"}/
+                  %label.input-group-addon{:for => "weight"} kg
+          .col-sm-3
+            .price_calculator_item
+              %p Quantity
+              .form-group
+                .input-group
+                  %input#quantity.form-control{:placeholder => "0", :type => "text"}/
+        .row
+          .col-sm-12
+            .price_calculator_btn
+              %button#calculate-button{"data-target" => "#calculator_modal", "data-toggle" => "modal", :type => "button"} Calculate
+/ Start
+%section.home_product_area
+  .container
+    .home_product_headding
+      %h1 Shop millions of Products
+      %p from the Best Online Shops
+    .row
+      .col-sm-2
+        .product_item
+          %a{:href => "#"}
+            %img{:alt => "img", :src => "images/brand/5.png"}/
+      .col-sm-2
+        .product_item
+          %a{:href => "#"}
+            %img{:alt => "img", :src => "images/brand/6.png"}/
+      .col-sm-2
+        .product_item
+          %a{:href => "#"}
+            %img{:alt => "img", :src => "images/brand/7.png"}/
+      .col-sm-2
+        .product_item
+          %a{:href => "#"}
+            %img{:alt => "img", :src => "images/brand/8.png"}/
+      .col-sm-2
+        .product_item
+          %a{:href => "#"}
+            %img{:alt => "img", :src => "images/brand/9.png"}/
+      .col-sm-2
+        .product_item
+          %a{:href => "#"}
+            %img{:alt => "img", :src => "images/brand/10.png"}/
+    .row
+      .col-sm-2
+        .product_item
+          %a{:href => "#"}
+            %img{:alt => "img", :src => "images/brand/11.png"}/
+      .col-sm-2
+        .product_item
+          %a{:href => "#"}
+            %img{:alt => "img", :src => "images/brand/12.png"}/
+      .col-sm-2
+        .product_item
+          %a{:href => "#"}
+            %img{:alt => "img", :src => "images/brand/13.png"}/
+      .col-sm-2
+        .product_item
+          %a{:href => "#"}
+            %img{:alt => "img", :src => "images/brand/14.png"}/
+      .col-sm-2
+        .product_item
+          %a{:href => "#"}
+            %img{:alt => "img", :src => "images/brand/15.png"}/
+      .col-sm-2
+        .product_item
+          %a{:href => "#"}
+            %img{:alt => "img", :src => "images/brand/16.png"}/
+    .row
+      .col-sm-2
+        .product_item
+          %a{:href => "#"}
+            %img{:alt => "img", :src => "images/brand/17.png"}/
+      .col-sm-2
+        .product_item
+          %a{:href => "#"}
+            %img{:alt => "img", :src => "images/brand/18.png"}/
+      .col-sm-2
+        .product_item
+          %a{:href => "#"}
+            %img{:alt => "img", :src => "images/brand/19.png"}/
+      .col-sm-2
+        .product_item
+          %a{:href => "#"}
+            %img{:alt => "img", :src => "images/brand/20.png"}/
+      .col-sm-2
+        .product_item
+          %a{:href => "#"}
+            %img{:alt => "img", :src => "images/brand/21.png"}/
+      .col-sm-2
+        .product_item
+          %a{:href => "#"}
+            %img{:alt => "img", :src => "images/brand/22.png"}/
+    .home_product_footer
+      %p
+        %a{:href => "#"} And more thousands of trusted online shops
+= render('shared/calculator_modal')
+= render('shared/product_modal')

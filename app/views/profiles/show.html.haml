@@ -1,0 +1,39 @@
+%section.setting_page_area
+  .container-fluid
+    .setting_area_headding
+      %h1 SETTINGS
+    .setting_wallet
+      %h5 Wallet
+      %p Available Balance
+      %h1= number_to_currency current_user.wallet_balance
+    .setting_area
+      .setting_area_form
+        = form_for current_user, url: profile_path do |f|
+          .form-group
+            %label{:for => "input_name"} First and last name
+            = f.text_field :name, class: 'form-control', id: 'input_name'
+          .form-group
+            %label{:for => "input_email"} Email
+            = f.email_field :email, class: 'form-control', id: 'input_email'
+          .form-group
+            %label{:for => "input_phone"} Phone number
+            = f.text_field :phone, class: 'form-control', placeholder: '+122-99-1123404'
+          .form-group
+            %label{:for => ""} Shipping
+            = f.text_field :shipping_address_line1, class: 'form-control', placeholder: 'Address Line 1'
+            = f.text_field :shipping_address_line2, class: 'form-control', placeholder: 'Address Line 2'
+          .form_select_area
+            .row
+              .col-sm-6
+                .form-group
+                  = f.select :shipping_city, City.all, class: 'form-control'
+              .col-sm-6
+                .form-group
+                  %select.form-control
+                    = Country.all.each do |country|
+                      %option= country
+          .form-group
+            %label{:for => ""} Change password here:
+            = f.password_field :password, class: 'form-control', placeholder: 'New password'
+          .setting_form_submit
+            %button{:type => "submit"} SAVE CHANGES

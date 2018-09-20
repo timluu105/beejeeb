@@ -1,0 +1,38 @@
+%section.order_page_area
+  .container
+    .page_headding
+      %h1 MY ORDERS
+    .order_area
+      %table{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0"}
+        %tr.order_table_header
+          %td
+            Order Id
+          %td
+            Date  Time
+          %td
+            Total
+          %td
+            Status
+          %td
+        - @orders.each do |order|
+          %tr.order_table_list
+            %td.order_id
+              %a{:href => "#"}
+                \# #{order.id}
+            %td.order_d_time
+              = order.created_at.strftime('%d %B at %l:%M %p')
+            %td.order_total
+              - if order.total_price
+                = number_to_currency_with_conversion(order.total_price)
+            - status_classes = { delivered: 'order_st_compleate', cancelled: 'order_st_cancelled', pending: 'order_st_process' }
+            %td
+            = status_classes.fetch(order.status){ 'default' }
+            "&gt;
+            %i
+              %img{:src => ""}/
+              = order_status_image_path(order.status)
+              " width="20px"/&gt;
+            = order.status.capitalize
+          %td.order_details
+            = button_to order, method: :get do
+              Check Details

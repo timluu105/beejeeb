@@ -1,0 +1,87 @@
+- content_for :css do
+  %link{:href => "css/form.css", :rel => "stylesheet"}/
+%section.signup_login_area
+  .signup_login_area_main
+    .container-fluid
+      .row
+        .col-sm-6
+          .looin_item
+            .login_area_headding
+              %h2 LOG IN
+            .facebook_button
+              = link_to user_facebook_omniauth_authorize_path do
+                %img{:alt => "facebook", :src => "images/fb_button.png"}/
+            .login_form_area
+              %p
+                or login with email
+              = form_for User.new, url: user_session_path do |form|
+                .input.input_bejeeb
+                  = form.email_field :email, id: 'input-1', class: 'input__field input__field_bejeeb'
+                  %label.input__label.input__label_bejeeb{:for => "input-1"}
+                    %span.input__label-content.input__label-content_bejeeb Email
+                .input.input_bejeeb
+                  = form.password_field :password, class: 'input__field input__field_bejeeb', id: 'input-2'
+                  %label.input__label.input__label_bejeeb{:for => "input-2"}
+                    %span.input__label-content.input__label-content_bejeeb Password
+                .signup_bottom_txt
+                  %p
+                    Forgot password?
+                    \#{link_to 'Reset password', new_user_password_path}
+                .login_form_btn
+                  %button{:type => "submit"} LOG IN
+        .col-sm-6
+          .signup_item
+            .signup_area_headding
+              %h2 SIGN UP
+            .signup_uper_txt
+              %p
+                SIGNUP NOW AND GET THE BENEFITS OF SHOPPING WORDWIDE STORES WITH THE LOWEST SHIPPING RATES
+                %br/
+            .signup_form_area
+              = form_for @user do |f|
+                .input.input_bejeeb
+                  = f.text_field :name, class: 'input__field input__field_bejeeb', id: 'input-3'
+                  %label.input__label.input__label_bejeeb{:for => "input-3"}
+                    %span.input__label-content.input__label-content_bejeeb First and last name
+                .input.input_bejeeb
+                  = f.email_field :email, class: 'input__field input__field_bejeeb', id: 'input-4'
+                  %label.input__label.input__label_bejeeb{:for => "input-4"}
+                    %span.input__label-content.input__label-content_bejeeb Email
+                .input.input_bejeeb
+                  = f.password_field :password, class: 'input__field input__field_bejeeb', id: 'input-5'
+                  %label.input__label.input__label_bejeeb{:for => "input-5"}
+                    %span.input__label-content.input__label-content_bejeeb Password
+                .signup_bottom_txt
+                  %p
+                    By clicking on «Sign Up», you agree to
+                    %a{:href => "terms.html"} Terms Of Service
+                    and
+                    %a{:href => "privacy.html"} Privacy Policy
+                .signup_form_btn
+                  %button{:type => "submit"} SIGN UP
+/ login_featured area Start
+%section.login_featured_area
+  .container
+    .row
+      .col-sm-4
+        .login_featured_item
+          .login_featured_item_pic
+            %img{:alt => "img", :src => "images/img-9.png"}/
+          %p
+            Use Beejeeb to shop anything , anywhere.
+      .col-sm-4
+        .login_featured_item.login_featured_item2
+          .login_featured_item_pic
+            %img{:alt => "img", :src => "images/img-10.png"}/
+          %p
+            Pay your order
+            %br/
+            with cash or using a credit card.
+      .col-sm-4
+        .login_featured_item
+          .login_featured_item_pic
+            %img{:alt => "img", :src => "images/img-11.png"}/
+          %p
+            Get your items delivered
+            %br/
+            straight to where you are!

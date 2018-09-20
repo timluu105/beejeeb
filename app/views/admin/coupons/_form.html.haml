@@ -1,0 +1,12 @@
+= form_for [:admin, @coupon] do |f|
+  %table.table.table-striped
+    %tr
+      %th Code
+      %td= f.text_field :code
+    %tr
+      %th Fixed Amount
+      %td= f.number_field :fixed_amount, step: :any
+    %tr
+      %th Discount percentage
+      %td= f.number_field :discount_percentage, step: :any
+  = f.submit 'Update', class: 'btn btn-primary'

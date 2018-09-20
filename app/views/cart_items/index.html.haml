@@ -1,0 +1,54 @@
+%section.checkout1_area
+  .container
+    .page_headding
+      %h1 CHECKOUT
+      %p Add More Items to your order
+    .checkout1_form
+      %form
+        .hero_form_controll
+          %input#url_to_fetch{:placeholder => "Paste item URL(e.g.https://www.amazon.com/gp/product/B072BQXQJ1)", :type => "text"}/
+          %button{"data-product-fetcher" => "true", "data-target" => "#product_modal", "data-toggle" => "modal", :type => "button"} Shop my item
+    .checkout1_table
+      %table{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0"}
+        %tr.checkout1_table_header
+          %td
+            Product Item
+          %td
+            Quantity
+          %td
+            Describe Your Item
+          %td
+        - @cart_items.each do |cart_item|
+          %tr.checkout1_table_content
+            %td.checkout_item
+              %img{:alt => "img", :src => "#{cart_item.image_url}", :width => "61px"}/
+              %span
+                = cart_item.title
+            %td.checkout1_table_quantity
+              .input-group
+                %span.input-group-btn
+                  %button.quantity-left-minus.btn.btn-number{"data-field" => "", "data-type" => "minus", :type => "button"}
+                    %img{:alt => "img", :src => "images/icons/left_arrow_o.png"}/
+                = form_with(model: cart_item) do |f|
+                  %input.quantity.form-control.input-number{:max => "100", :min => "1", :name => "cart_item[quantity]", :onchange => "this.form.submit()", :type => "text", :value => "#{cart_item.quantity}"}/
+                %span.input-group-btn
+                  %button.quantity-right-plus.btn.btn-number{"data-field" => "", "data-type" => "plus", :type => "button"}
+                    %img{:alt => "img", :src => "images/icons/right_arrow_o.png"}/
+            %td.checkout_description
+              - if cart_item.instructions
+                = cart_item.instructions
+              - else
+                no description
+            %td.checkout_edit
+              %ul
+                %li
+                  = link_to cart_item, method: :delete do
+                    %i.fa.fa-times-circle
+                %li
+                  %a{"data-edit_product" => "true", "data-edit_url" => "#{cart_item_path(cart_item)}", "data-target" => "#product_modal", "data-toggle" => "modal"}
+                    %i.fa.fa-pencil
+    - if @cart_items.count.positive?
+      .checkout1_btn
+        = button_to checkout_cart_items_path do
+          send to review
+= render('shared/product_modal')

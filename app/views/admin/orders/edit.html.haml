@@ -1,0 +1,38 @@
+= form_for [:admin, @order] do |f|
+  %table.table.table-striped
+    %tr
+      %th Image
+      %th Link
+      %th Title
+      %th Instructions
+      %th Unit cost
+      %th Weight
+      %th International Shipping
+      %th US Shipping and taxes
+      %th Lynks Fees
+      %th Taxes and customs
+    = f.fields_for :order_items do |item_form|
+      - item = item_form.object
+      %tr
+        %td
+          %img{:src => "#{item.image_url}", :width => "100px"}/
+        %td= link_to 'Link', item.supplier_url
+        %td= item.title
+        %td= item.instructions
+        %td
+          = item_form.text_field :unit_cost, style: 'width:90px'
+        %td
+          = item_form.text_field :item_weight, style: 'width:90px'
+        %td
+          = item_form.text_field :international_shipping, style: 'width:90px'
+        %td
+          = item_form.text_field :us_shipping_and_taxes, style: 'width:90px'
+        %td
+          = item_form.text_field :lynks_fees, style: 'width:90px'
+        %td
+          = item_form.text_field :taxes_and_customs, style: 'width:90px'
+  %table.table.table-striped
+    %tr
+      %th Order Status
+      %td= f.select :status, @order.class.statuses.keys
+  = f.submit "Update", class: 'btn btn-primary'

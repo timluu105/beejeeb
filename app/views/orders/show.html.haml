@@ -1,0 +1,117 @@
+%section.order_details_area
+  .container
+    .page_headding
+      %h1 ORDER DETAILS
+    .order_details_area_main
+      .order_details_table
+        %table{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0"}
+          %tr.order_details_table_header
+            %td Item
+            %td Status
+            %td Quantity
+            %td Weight
+            %td Price
+          - @order.order_items.each do |item|
+            %tr.order_details_table_item
+              %td.order_item
+                .order_item_details
+                  .order_item_details_pic
+                    %img{:alt => "img", :src => "#{item.image_url}", :width => "65px"}/
+                  %p
+                    = item.title
+              %td.order_status
+                %i
+                  %img{:src => "#{order_status_image_path(@order.status)}", :width => "20px"}/
+                = @order.status.capitalize
+              %td.order_quantity
+                = item.quantity
+              %td.order_weight
+                - if item.item_weight
+                  = item.item_weight
+                  kg
+                - else
+                  \--
+              %td.order_price
+                - if item.unit_cost
+                  = number_to_currency item.unit_cost
+                - else
+                  \--
+      .order_details_content
+        .row
+          .col-sm-6
+            %h4
+              = link_to [:orders] do
+                %i.fa.fa-angle-left
+                Back to the list of my orders
+            - if @order.has_checkout_information?
+              .order_details_content_left
+                %p
+                  Name: #{@order.client_name}
+                %p
+                  Telephone Number: #{@order.client_phone}
+                %p
+                  Email Address: #{@order.client_email}
+                %p
+                  Shipping Address: #{@order.shipping_address}
+          .col-sm-6
+            .order_details_content_right
+              .od_content_right_headding
+                %button.progress_color= @order.status.capitalize
+                %h3
+                  Total Price: #{@order.total_price_with_discounts ? number_to_currency_with_conversion(@order.total_price_with_discounts) : '--'}
+                .clearfix
+              - if @order.has_checkout_information?
+                .od_content_right_table
+                  %table{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0"}
+                    %tr
+                      %td.od_table_left
+                        Items in Cart:
+                      %td.od_table_right
+                        = @order.items_count
+                    %tr
+                      %td.od_table_left
+                        Sub-Total:
+                      %td.od_table_right
+                        = number_to_currency(@order.subtotal)
+                    %tr
+                      %td.od_table_left
+                        Us Shipping and Taxes:
+                      %td.od_table_right
+                        = number_to_currency(@order.us_shipping_and_taxes)
+                    %tr
+                      %td.od_table_left
+                        Total Weight:
+                      %td.od_table_right
+                        = "#{@order.total_weight} kg" if @order.total_weight
+                    %tr
+                      %td.od_table_left
+                        International Shipping:
+                      %td.od_table_right
+                        = number_to_currency(@order.international_shipping)
+                    %tr
+                      %td.od_table_left
+                        Local Customes and Taxes:
+                      %td.od_table_right
+                        = number_to_currency(@order.local_customs_and_taxes)
+                    %tr
+                      %td.od_table_left
+                        Fees:
+                      %td.od_table_right
+                        = number_to_currency(@order.fees)
+                    - if @order.coupon_discount
+                      %tr
+                        %td.od_table_left
+                          Coupon discount:
+                        %td.od_table_right
+                          = number_to_currency(- @order.coupon_discount)
+        - if @order.can_checkout?
+          .row
+            .col-sm-6
+              .order_d_down_item1
+                = link_to [@order, :cancel], method: :post do
+                  %img{:alt => "img", :src => "/images/icons/cross.png"}/
+                  Cancel Order
+            .col-sm-6
+              .order_d_down_item2
+                = link_to [@order, :checkout] do
+                  %button{:type => "button"} Checkout

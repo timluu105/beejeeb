@@ -1,0 +1,139 @@
+= content_for :css do
+  %link{:href => "/css/form.css", :rel => "stylesheet"}
+  = form_for @order, url: order_checkout_path(@order) do |f|
+    %section.checkout2_area
+      .container
+        .page_headding
+          %h1 CHECKOUT
+          %p Your order will be confirmed  And Cash will be collected at your doorstep during the next 24 hours
+        .row
+          .col-sm-8
+            .checkout2_left
+              - @order.order_items.each do |item|
+                .checkout2_left_item
+                  .checkout2_left_item_pic
+                    %img{:src => ""}/
+                    = item.image_url
+                    " alt="img"/&gt;
+                  .checkout2_left_item_header
+                    .row
+                      .col-xs-8
+                        %h5= item.title
+                      .col-xs-4
+                        %ul
+                          %li
+                            = link_to '#', method: :delete do
+                              %i.fa.fa-times-circle
+                  .checkout2_table
+                    %table{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0"}
+                      %tr
+                        %td
+                          .checkout2_table_headding
+                            Store Price
+                          .checkout2_table_content
+                            $ 23.99
+                        %td
+                          .checkout2_table_headding
+                            Quantity
+                          .checkout2_table_quantity
+                            .input-group
+                              = item.quantity
+                        %td
+                          .checkout2_table_headding
+                            Unit Cost
+                          .checkout2_table_content
+                            = number_to_currency(item.unit_cost)
+                        %td
+                          .checkout2_table_headding
+                            International Shipping
+                          .checkout2_table_content
+                            = number_to_currency(item.international_shipping)
+                        %td
+                          .checkout2_table_headding
+                            Lynks Fees
+                          .checkout2_table_content
+                            = number_to_currency(item.lynks_fees)
+                        %td
+                          .checkout2_table_headding
+                            Taxes and Customs
+                          .checkout2_table_content
+                            = number_to_currency(item.taxes_and_customs)
+              .checkout2_left_item_calculate
+                .checkout2_calculate_main
+                  - if @order.coupon_discount
+                    .row
+                      .col-xs-6
+                        %h5 Subtotal
+                      .col-xs-6
+                        .checkout2_calculate_right
+                          %h5= number_to_currency(@order.total_price)
+                    .row
+                      .col-xs-6
+                        %h5 Coupon Discount:
+                      .col-xs-6
+                        .checkout2_calculate_right
+                          %h5= number_to_currency(- @order.coupon_discount)
+                  .row
+                    .col-xs-6
+                      %h4 Total Price:
+                    .col-xs-6
+                      .checkout2_calculate_right
+                        %h4= number_to_currency(@order.total_price_with_discounts)
+                        %h5
+                          (#{conversion(@order.total_price_with_discounts)})
+                        %p Final Price
+                .clearfix
+          .col-sm-4
+            .checkout2_right
+              .checkout2_right_form
+                %form
+                  .checkout2_right_form_headding
+                    %h4
+                      Shipping Info
+                  .input.input_bejeeb
+                    = f.text_field :shipping_full_name, class: 'input__field input__field_bejeeb', id: 'input-1'
+                    %label.input__label.input__label_bejeeb{:for => "input-1"}
+                      %span.input__label-content.input__label-content_bejeeb Full Name (adress recipient)
+                  .input.input_bejeeb
+                    = f.text_field :shipping_address_line1, class: 'input__field input__field_bejeeb', id: 'input-2'
+                    %label.input__label.input__label_bejeeb{:for => "input-2"}
+                      %span.input__label-content.input__label-content_bejeeb Shipping Address Line 1
+                  .input.input_bejeeb
+                    = f.text_field :shipping_address_line2, class: 'input__field input__field_bejeeb', id: 'input-3'
+                    %label.input__label.input__label_bejeeb{:for => "input-3"}
+                      %span.input__label-content.input__label-content_bejeeb Shipping Address Line 2
+                  .input.input_bejeeb
+                    = f.select :shipping_city, City.all, class: 'form-control', prompt: 'Select city'
+                  .input.input_bejeeb
+                    %input#input-6.input__field.input__field_bejeeb{:type => "text"}
+                      %label.input__label.input__label_bejeeb{:for => "input-6"}
+                        %span.input__label-content.input__label-content_bejeeb Phone Number
+                    .checkout_right_form_field
+                      .checkout_form_controll
+                        = f.text_field :coupon_code_to_apply, placeholder: 'Discount Coupon'
+                        %button{:formaction => ""}
+                        = order_apply_coupon_path(@order)
+                        " type="submit"&gt;Apply
+                  .checkout2_right_form_headding
+                    %h4
+                      Payment Method
+                  .checkout_right_form_top
+                    .row
+                      .col-xs-12
+                        %label.checkout_checkbox
+                          .checkout_pic
+                            %img{:alt => "img", :src => "/images/img-16.png"}
+                            %h5 By collection at my door
+                            %a{:href => "#"} How it works?
+                            %input{:checked => "checked", :name => "radio", :type => "radio"}
+                              %span.checkmark
+                          .col-xs-12{:style => "display:none"}
+                            %label.checkout_checkbox
+                              .checkout_pic
+                                %img{:alt => "img", :src => "images/img-17.png"}
+                                %h5 By credit card
+                                %a{:href => "#"} How it works?
+                                %input{:name => "radio", :type => "radio"}
+                                  %span.checkmark
+                          .checkout2_form_btn
+                            %button{:type => "submit"} Checkout
