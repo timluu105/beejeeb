@@ -9,6 +9,8 @@ default: &settings
   instagram_link: http://instagram.com/
   twitter_link: https://twitter.com/
   facebook_link: https://www.facebook.com/
+  languages:
+    en: Eng
 
 test:
   <<: *settings

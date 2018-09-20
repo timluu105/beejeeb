@@ -3,23 +3,20 @@
   .hero_main
     .container
       .row
-        .col-sm-12
-          .hero_txt
-            %h1 Shop The World To Your Doorstep And Pay Cash In Jordan
-    #start_shopping.hero_form_area
-      .container
-        .row
-          .col-sm-12
-            .hero_form
-              .hero_form_txt
-                %p
-                  Send us the links of the products you want.
-                  %br/
-                  Beejeeb will buy on your behalf and ship them to your home.
-              %form
-                .hero_form_controll
-                  %input#url_to_fetch{:placeholder => "Paste item URL(e.g.https://www.amazon.com/gp/product/B072BQXQJ1)", :type => "text"}/
-                  %button{"data-product-fetcher" => "true", "data-target" => "#product_modal", "data-toggle" => "modal", :type => "button"} SHOP NOW
+        .col-sm-6
+          .home-header
+            %h1 Shop The World To Your Doorstep And Pay Cash in Jordan
+            %p
+              Send us the links of the products you want.
+              %br/
+              #{APP_CONFIG['title']} will buy on your behalf and ship them to your home.
+            %form
+              .hero_form_controll
+                %input#url_to_fetch{:placeholder => "Paste item URL(e.g.https://www.amazon.com/gp/product/B072BQXQJ1)", :type => "text"}/
+                %button{"data-product-fetcher" => "true", "data-target" => "#product_modal", "data-toggle" => "modal", :type => "button"} SHOP NOW
+
+        .col-sm-6
+
 / featured_area2 Start
 %section#how-it-works.featured_area2
   .featured_area2_main

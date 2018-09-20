@@ -26,3 +26,29 @@
     margin: 2rem 0;
   }
 }
+
+
+.hero_area {
+  background: url(asset-path('home-bg.png')) bottom center no-repeat;
+  background-size: contain;
+  background-position: right;
+  background-color: #fff;
+}
+.home-header {
+  padding-top: 110px;
+  min-height: 700px;
+  color: #000;
+  h1 {
+    font-size: 5rem;
+    padding: 1.5rem 0;
+    line-height: 6.5rem;
+  }
+  p {
+    font-size: 2.5rem;
+    line-height: 3rem;
+    margin-bottom: 40px;
+  }
+}
+.signin_btn {
+  border: 0;
+}

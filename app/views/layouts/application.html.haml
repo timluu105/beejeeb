@@ -3,7 +3,7 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     / Title
-    %title Beejeeb: Your Personal Shopper
+    %title #{APP_CONFIG['title']}: Your Personal Shopper
     %meta{:charset => "utf-8"}/
     %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}/
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
@@ -39,19 +39,19 @@
           / Collect the nav links, forms, and other content for toggling
           #bs-example-navbar-collapse-1.collapse.navbar-collapse
             %ul.nav.navbar-nav
-              %li
-                %a{:href => "/#start_shopping"}
-                  %img{:alt => "img", :src => "/images/icons/5.png"}>/
-                  Start Shopping
-              %li
-                %a{:href => "/#how-it-works"}
-                  %img{:alt => "img", :src => "/images/icons/6.png"}>/
-                  How It Works
-              %li
-                %a{:href => "/#calculator"}
-                  %img{:alt => "img", :src => "/images/icons/7.png"}>/
-                  Calculator
+              %li= link_to 'Start Shopping', '#start_shopping'
+              %li= link_to 'How It Works', '#how-it-works'
+              %li= link_to 'Calculator', '#calculator'
+
             %ul.nav.navbar-nav.navbar-right
+              %li.dropdown.lang_nav
+                %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                  = APP_CONFIG['languages'].first.last
+                  %span.caret
+                %ul.dropdown-menu
+                  - APP_CONFIG['languages'].each do |code, title|
+                    %li
+                      %a{:href => "#"}= title
               - unless current_user
                 %li.dropdown.flag_nav
                   %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
@@ -67,11 +67,8 @@
                     %li
                       %a{:href => "#"}
                         %img{:alt => "img", :src => "/images/flag/3.png"}/
-              %li.faq_nav
-                %a{:href => "faq.html"}
-                  %img{:alt => "img", :src => "/images/icons/8.png"}/
-              %li
-                %a{:href => "#"} العربية
+
+
               - if current_user
                 %li
                   %a{:href => "#"}
@@ -90,12 +87,16 @@
                     %img{:alt => "img", :src => "/images/icons/shutdown.png", :width => "22px"}/
               - else
                 %li
+                  = link_to cart_items_path do
+                    %img{:alt => "img", :src => "/images/icons/cart_icon.png"}/
+                %li.faq_nav
+                  = link_to '/faq.html' do
+                    = image_tag "/images/icons/8.png"
+                %li
                   %button.signin_btn{:onclick => "window.location.href='login-signup.html'", :type => "button"} Sign in
                 %li
                   %button.c_account_btn{:onclick => "window.location.href='login-signup.html'", :type => "button"} Create account
-                %li
-                  = link_to cart_items_path do
-                    %img{:alt => "img", :src => "/images/icons/cart_icon.png"}/
+
     = render 'layouts/messages'
     = yield
     / Footer Area Start
