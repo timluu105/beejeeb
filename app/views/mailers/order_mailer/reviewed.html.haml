@@ -20,7 +20,7 @@
             %table.container770{:align => "center", :border => "0", :cellpadding => "0", :cellspacing => "0", :style => "border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt", :width => "330"}
               %tr
                 %td{:align => "center", :style => "font-family:'Lato', Arial, Tahoma; Font-size:18px; line-height:28px; font-weight:bold; font-style:normal; color:#12425E; padding:40px 0 40px 0"}
-                  Here is exactly how much your Lynks order is going to cost you.
+                  Here is exactly how much your #{APP_CONFIG['title']} order is going to cost you.
         - @order.order_items.each do |order_item|
           %tr
             %td{:align => "center", :style => "padding:0 15px 0 15px"}
