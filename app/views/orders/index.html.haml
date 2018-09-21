@@ -28,7 +28,7 @@
             %td{class: status_classes.fetch(order.status, 'default') }
               %i
                 = image_tag order_status_image_path(order.status), width: "20px"
-              = order.status.capitalize
+              = I18n.t(order.status, scope: %i[order statuses])
             %td.order_details
               = button_to order, method: :get do
                 Check Details

@@ -1,5 +1,12 @@
 - klass ||=  name == 'notice' ? 'success' : 'danger'
 - url ||= nil
+- route ||= nil
+- prms ||= {}
+
+- if !url && route
+  - route = "#{route}_path"
+  - if respond_to?(route)
+    - url = send(route, prms.symbolize_keys) rescue nil
 
 %div{:class => "alert alert-dismissible alert-#{klass}"}
   %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"}

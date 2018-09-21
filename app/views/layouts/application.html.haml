@@ -61,6 +61,8 @@
                 %li.nav-orders
                   = link_to orders_path do
                     %img{:alt => "My Orders", :src => "/images/icons/list.png"}/
+                    - if current_notification
+                      %i.fa.fa-star
                 %li.cart_nav
                   = link_to cart_items_path do
                     = image_tag 'cart2.png'

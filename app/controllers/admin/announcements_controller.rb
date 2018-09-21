@@ -2,7 +2,8 @@ class Admin::AnnouncementsController < Admin::ApplicationController
   before_action :set_announcement, only: %i[edit update destroy]
 
   def index
-    @announcements = Announcement.page(params[:page]).per(20)
+    # @todo fix pagination for datatable at UI
+    @announcements = Announcement.page(params[:page]).per(100)
   end
 
   def new

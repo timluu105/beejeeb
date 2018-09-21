@@ -3,9 +3,10 @@
 class Order < ApplicationRecord
   belongs_to :user
   has_many :order_items
+  has_many :notifications, as: :source, dependent: :destroy
 
-  enum status: %i[reviewing reviewed confirmed received_usa_hub paid
-                  out_for_delivery delivered on_hold returned cancelled]
+  # @todo move to enumerate
+  enum status: MODELS.dig(:order, :statuses)
 
   accepts_nested_attributes_for :order_items
 
@@ -130,11 +131,24 @@ class Order < ApplicationRecord
   private
 
   def notify_user
+    if saved_changes['status'].present?
+      notifications.create(
+        user: user,
+        text: "Order changed status from
+          #{I18n.t(saved_changes['status'].first, scope: %i[order statuses])} to
+          #{I18n.t(saved_changes['status'].second, scope: %i[order statuses])}",
+        route: 'order',
+        params: { id: id }
+      )
+    end
+
+    ### @todo move to Notification
     # send if reviewed
     OrderMailer.reviewed(self).deliver_now if saved_changes['status'].present? && status == 'reviewed'
 
     # send if just created
     OrderMailer.created(self).deliver_now if saved_changes['id'] && saved_changes['id'].first.nil?
+    ###
   end
 
   def valid_status_change

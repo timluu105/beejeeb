@@ -4,8 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :rememberable, :recoverable,
          :omniauthable, omniauth_providers: %i[facebook]
 
-  has_many :cart_items
-  has_many :orders
+  has_many :cart_items, dependent: :destroy
+  has_many :orders, dependent: :destroy
+  has_many :notifications, dependent: :destroy
+
   has_one_attached :avatar
 
   validates :name, presence: true

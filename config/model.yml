@@ -1,0 +1,22 @@
+announcement:
+  statuses:
+    - enabled
+    - disabled
+
+order:
+  statuses:
+    - reviewing
+    - reviewed
+    - confirmed
+    - received_usa_hub
+    - paid
+    - out_for_delivery
+    - delivered
+    - on_hold
+    - returned
+    - cancelled
+
+notification:
+  statuses:
+    - unread
+    - read

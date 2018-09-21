@@ -3,6 +3,8 @@
  *= require_self
  */
 
+$notification-color: #f5adad;
+
 @font-face {
   font-family: 'Muli';
   src: font-url('Muli/Muli-SemiBold.ttf') format('truetype'),
@@ -16,7 +18,7 @@
 
 .alert {
   margin-bottom: 0;
-  &.alert-announcement {
+  &.alert-announcement, &.alert-notification {
     background-color: #f69833;
     text-align: center;
     color: #fff;
@@ -26,6 +28,10 @@
     a {
       color: #fff;
     }
+  }
+
+  &.alert-notification {
+    background-color: $notification-color;
   }
 }
 
@@ -174,6 +180,16 @@
   .nav-orders, .nav-settings, .nav-sign-out {
     img {
       height: 30px;
+    }
+  }
+
+  .nav-orders {
+    i {
+      position: absolute;
+      top: -2px;
+      left: 36px;
+      color: $notification-color;
+      font-size: 20px;
     }
   }
 }

@@ -3,10 +3,17 @@
 class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token
 
-  helper_method :enabled_announcement, :admin_pages?, :cart_items_count
+  helper_method :current_announcement, :admin_pages?, :cart_items_count,
+    :current_notification
 
-  def enabled_announcement
-    @enabled_announcement ||= Announcement.enabled.last
+  def current_announcement
+    @current_announcement ||= Announcement.enabled.random.first
+  end
+
+  def current_notification
+    return unless current_user
+
+    @current_notification ||= current_user.notifications.unread.random.first
   end
 
   def admin_pages?

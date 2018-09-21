@@ -3,10 +3,14 @@
 class OrdersController < AuthenticatedController
   def index
     @orders = current_user.orders
+
+    current_user.notifications.where(source_type: 'Order').update_all status: 'read'
   end
 
   def show
     @order = current_user.orders.find(params[:id])
+
+    @order.notifications.update_all status: 'read'
   end
 
   def cancel

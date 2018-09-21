@@ -2,5 +2,5 @@
   = f.inputs do
     = f.input :title
     = f.input :url, hint: 'use full address with http.. or path with leading /'
-    = f.input :status, as: :select, collection: Announcement::STATUSES, include_blank: false
+    = f.input :status, as: :select, collection: Announcement.statuses.keys, include_blank: false
   = f.action :submit, button_html: { class: 'btn btn-primary' }
