@@ -35,7 +35,7 @@
               %span.icon-bar
               %span.icon-bar
             = link_to root_path, class: 'navbar-brand' do
-              %img{:alt => "img", :src => "/images/primary-logo.png"}/
+              = image_tag 'shipdady.png', alt: APP_CONFIG['title']
           / Collect the nav links, forms, and other content for toggling
           #bs-example-navbar-collapse-1.collapse.navbar-collapse
             %ul.nav.navbar-nav
@@ -44,58 +44,56 @@
               %li= link_to 'Calculator', '#calculator'
 
             %ul.nav.navbar-nav.navbar-right
-              %li.dropdown.lang_nav
+              %li.dropdown.lang_nav.right-divider
                 %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
                   = APP_CONFIG['languages'].first.last
-                  %span.caret
+                  %span.arrow
+
                 %ul.dropdown-menu
                   - APP_CONFIG['languages'].each do |code, title|
                     %li
                       %a{:href => "#"}= title
-              - unless current_user
-                %li.dropdown.flag_nav
-                  %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-                    %img{:alt => "img", :src => "/images/flag/1.png"}/
-                    %span.caret
-                  %ul.dropdown-menu
-                    %li
-                      %a{:href => "#"}
-                        %img{:alt => "img", :src => "/images/flag/1.png"}/
-                    %li
-                      %a{:href => "#"}
-                        %img{:alt => "img", :src => "/images/flag/2.png"}/
-                    %li
-                      %a{:href => "#"}
-                        %img{:alt => "img", :src => "/images/flag/3.png"}/
-
 
               - if current_user
-                %li
+                %li.right-divider
                   %a{:href => "#"}
                     Hello, #{current_user.name}
-                %li
+                %li.nav-orders
                   = link_to orders_path do
-                    %img{:alt => "My Orders", :height => "17px", :src => "/images/icons/list.png", :width => "17px"}/
-                %li
+                    %img{:alt => "My Orders", :src => "/images/icons/list.png"}/
+                %li.cart_nav
                   = link_to cart_items_path do
-                    %img{:alt => "img", :src => "/images/icons/cart_icon.png"}/
-                %li
+                    = image_tag 'cart2.png'
+                  - if cart_items_count.positive?
+                    .count= cart_items_count
+                %li.nav-settings
                   = link_to profile_path do
-                    %img{:src => "/images/icons/settings.png", :width => "22px"}/
-                %li
+                    %img{:src => "/images/icons/settings.png"}/
+                %li.nav-sign-out
                   = link_to destroy_user_session_path, method: :delete do
-                    %img{:alt => "img", :src => "/images/icons/shutdown.png", :width => "22px"}/
+                    %img{:alt => "img", :src => "/images/icons/shutdown.png"}/
               - else
-                %li
+                %li.dropdown.flag_nav.right-divider
+                  %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                    = image_tag 'flag1.png'
+                    %span.arrow
+                  %ul.dropdown-menu
+                    %li
+                      = link_to '#' do
+                        = image_tag 'flag1.png'
+                %li.right-divider
                   = link_to cart_items_path do
-                    %img{:alt => "img", :src => "/images/icons/cart_icon.png"}/
+                    = image_tag 'cart2.png'
                 %li.faq_nav
                   = link_to '/faq.html' do
-                    = image_tag "/images/icons/8.png"
+                    = image_tag 'info2.png'
                 %li
-                  %button.signin_btn{:onclick => "window.location.href='login-signup.html'", :type => "button"} Sign in
+                  = link_to 'Sign in', '/login-signup.html', class: 'signin_btn'
+                
+                  -# %button.signin_btn{:onclick => "window.location.href='login-signup.html'", :type => "button"} Sign in
                 %li
-                  %button.c_account_btn{:onclick => "window.location.href='login-signup.html'", :type => "button"} Create account
+                  = link_to 'Create account', '/login-signup.html', class: 'c_account_btn'
+                  -# %button.c_account_btn{:onclick => "window.location.href='login-signup.html'", :type => "button"} Create account
 
     = render 'layouts/messages'
     = yield
