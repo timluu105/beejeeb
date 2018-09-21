@@ -56,9 +56,17 @@
           .col-sm-6
             .order_details_content_right
               .od_content_right_headding
-                %button.progress_color= I18n.t(@order.status, scope: %i[order statuses])
+                -# %button.progress_color= I18n.t(@order.status, scope: %i[order statuses])
                 %h3
                   Total Price: #{@order.total_price_with_discounts ? number_to_currency_with_conversion(@order.total_price_with_discounts) : '--'}
+
+                - if @order.already_paid.positive?
+                  %h3
+                    Paid: #{number_to_currency_with_conversion @order.already_paid}
+
+                  %h3
+                    Pay More: #{number_to_currency_with_conversion @order.total_pay_more}
+
                 .clearfix
               - if @order.has_checkout_information?
                 .od_content_right_table

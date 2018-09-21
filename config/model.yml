@@ -20,3 +20,9 @@ notification:
   statuses:
     - unread
     - read
+
+transaction:
+  transaction_types:
+    - addition
+    - deduction
+    - paid_by_cash

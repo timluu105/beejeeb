@@ -77,9 +77,22 @@
                   .col-xs-6
                     .checkout2_calculate_right
                       %h4= number_to_currency(@order.total_price_with_discounts)
-                      %h5
-                        (#{conversion(@order.total_price_with_discounts)})
-                      %p Final Price
+                      -# %h5
+                      -#   (#{conversion(@order.total_price_with_discounts)})
+                      -# %p Final Price
+                .row
+                  .col-xs-6
+                    %h4 From Wallet:
+                  .col-xs-6
+                    .checkout2_calculate_right
+                      %h4= number_to_currency(@order.possible_amount_from_wallet)
+
+                .row
+                  .col-xs-6
+                    %h4 Final Price:
+                  .col-xs-6
+                    .checkout2_calculate_right
+                      %h4= number_to_currency(@order.more_pay_with_wallet)
               .clearfix
         .col-sm-4
           .checkout2_right

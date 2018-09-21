@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount_cents: 1
+  user: one
+  order: one
+  transaction_type: MyString
+
+two:
+  amount_cents: 1
+  user: two
+  order: two
+  transaction_type: MyString

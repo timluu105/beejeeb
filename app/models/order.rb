@@ -2,8 +2,9 @@
 
 class Order < ApplicationRecord
   belongs_to :user
-  has_many :order_items
+  has_many :order_items, dependent: :destroy
   has_many :notifications, as: :source, dependent: :destroy
+  has_many :transactions, as: :source
 
   # @todo move to enumerate
   enum status: MODELS.dig(:order, :statuses)
@@ -13,6 +14,7 @@ class Order < ApplicationRecord
   validate :valid_status_change
 
   after_save :notify_user
+  after_save :transactions_controll
 
   def total_price_with_discounts
     return total_price - coupon_discount if coupon_discount
@@ -80,6 +82,30 @@ class Order < ApplicationRecord
     true
   end
 
+  def possible_amount_from_wallet
+    total_price_with_discounts > user.wallet_balance ? user.wallet_balance : total_price_with_discounts
+  end
+
+  def more_pay_with_wallet
+    total_price_with_discounts - possible_amount_from_wallet
+  end
+
+  def total_pay_more
+    total_price_with_discounts - already_paid
+  end
+
+  def already_paid
+    -transactions.sum(&:amount)
+  end
+
+  def checkout!(params = {})
+    assign_attributes(params)
+
+    return false unless valid_for_checkout?
+
+    update status: 'confirmed'
+  end
+
   def shipping_address
     user.shipping_address_line1
   end
@@ -129,6 +155,18 @@ class Order < ApplicationRecord
   end
 
   private
+
+  def transactions_controll
+    return if saved_changes['status'].blank?
+
+    if status == 'confirmed' && (am = possible_amount_from_wallet).positive?
+      transactions.deduction.create user: user, amount: -am
+    end
+
+    if status == 'paid' && (am = total_pay_more).positive?
+      transactions.paid_by_cash.create user: user, amount: -am
+    end
+  end
 
   def notify_user
     if saved_changes['status'].present?

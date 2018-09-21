@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_21_120633) do
+ActiveRecord::Schema.define(version: 2018_09_21_132430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,6 +112,19 @@ ActiveRecord::Schema.define(version: 2018_09_21_120633) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "transactions", force: :cascade do |t|
+    t.integer "amount_cents", default: 0, null: false
+    t.bigint "user_id"
+    t.string "source_type"
+    t.bigint "source_id"
+    t.string "transaction_type"
+    t.text "details"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["source_type", "source_id"], name: "index_transactions_on_source_type_and_source_id"
+    t.index ["user_id"], name: "index_transactions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -134,4 +147,5 @@ ActiveRecord::Schema.define(version: 2018_09_21_120633) do
   end
 
   add_foreign_key "notifications", "users"
+  add_foreign_key "transactions", "users"
 end

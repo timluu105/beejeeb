@@ -41,10 +41,7 @@ class OrdersController < AuthenticatedController
       @order.apply_coupon(coupon_params[:coupon_code_to_apply])
     end
 
-    @order.assign_attributes(checkout_params)
-    if @order.valid_for_checkout?
-      @order.status = 'confirmed'
-      @order.save
+    if @order.checkout! checkout_params
       redirect_to order_confirmation_path(@order)
     else
       flash.now[:error] = @order.errors.full_messages.to_sentence
